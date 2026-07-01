@@ -22,7 +22,7 @@ variable "storage_account_access_key" {
     type = string
     sensitive = true  
 }
-variable "application_insights_cinnection_string" {
+variable "application_insights_connection_string" {
     type = string  
 }
 
