@@ -9,14 +9,14 @@ resource "azurerm_service_plan" "main" {
 }
 
 resource "azurerm_linux_function_app" "main" {
-  name                       = var.function_app_name
-  location                   = var.location
-  resource_group_name        = var.resource_group_name
-  service_plan_id            = azurerm_service_plan.main.id
-  storage_account_name       = var.storage_account_name
-  storage_account_access_key = var.storage_account_access_key
+  name                        = var.function_app_name
+  location                    = var.location
+  resource_group_name         = var.resource_group_name
+  service_plan_id             = azurerm_service_plan.main.id
+  storage_account_name        = var.storage_account_name
+  storage_account_access_key  = var.storage_account_access_key
   functions_extension_version = "~4"
-  https_only                 = true
+  https_only                  = true
 
   site_config {
     application_stack {
@@ -25,10 +25,10 @@ resource "azurerm_linux_function_app" "main" {
   }
 
   app_settings = {
-    "FUNCTIONS_WORKER_RUNTIME"                  = "node"
-    "APPLICATIONINSIGHTS_CONNECTION_STRING"    = var.application_insights_connection_string
+    "FUNCTIONS_WORKER_RUNTIME"                      = "node"
+    "APPLICATIONINSIGHTS_CONNECTION_STRING"         = var.application_insights_connection_string
     "ServiceBusConnection__fullyQualifiedNamespace" = "${var.servicebus_namespace_name}.servicebus.windows.net"
-    "KEY_VAULT_URI"                            = var.key_vault_uri
+    "KEY_VAULT_URI"                                 = var.key_vault_uri
   }
 
   identity {
